@@ -12,12 +12,12 @@
                markdown += "| " + " | ".join(["---"] * len(table[0])) + " |\n"
                for row in table[1:]:
                    markdown += "| " + " | ".join(row) + " |\n"
-               placeholder = "urltomarkdowntableplaceholder" + str(i)
+               placeholder = f"urltomarkdowntableplaceholder{str(i)}"
                replacements.append({'placeholder': placeholder, 'replacement': markdown})
                html = html.replace(str(table), placeholder)
            return html
 
        def format_codeblocks(self, html, replacements):
            codeblocks = re.findall(r'<pre[^>]*>(.*?)</pre>', html, re.DOTALL)
-           for i, codeblock in enumerate(codeblocks):
+           for codeblock in codeblocks:
                codeblock = HTMLParser().unescape(codeblock)

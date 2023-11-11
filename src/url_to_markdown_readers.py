@@ -9,16 +9,18 @@
        def read_url(self, url, inline_title, ignore_links):
            response = requests.get(url)
            soup = BeautifulSoup(response.text, 'html.parser')
-           markdown = url_to_markdown_processor.process_dom(url, soup, inline_title, ignore_links)
-           return markdown
+           return url_to_markdown_processor.process_dom(
+               url, soup, inline_title, ignore_links
+           )
 
    class apple_reader:
        def read_url(self, url, inline_title, ignore_links):
            json_url = url_to_markdown_apple_dev_docs.dev_doc_url(url)
            response = requests.get(json_url)
            json = response.json()
-           markdown = url_to_markdown_apple_dev_docs.parse_dev_doc_json(json, inline_title, ignore_links)
-           return markdown
+           return url_to_markdown_apple_dev_docs.parse_dev_doc_json(
+               json, inline_title, ignore_links
+           )
 
    class stack_reader:
        def read_url(self, url, inline_title, ignore_links):
@@ -40,7 +42,4 @@
            return html_reader()
 
    def ignore_post(url):
-       if url and url.startswith(stackoverflow_prefix):
-           return True
-       else:
-           return False
+       return bool(url and url.startswith(stackoverflow_prefix))
