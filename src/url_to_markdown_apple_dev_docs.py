@@ -37,10 +37,10 @@
                                text += token_text
                            if 'languages' in declaration and declaration['languages']:
                                language_text = "\nLanguages: " + ", ".join(declaration['languages'])
-                               text += " " + language_text
+                               text += f" {language_text}"
                            if 'platforms' in declaration and declaration['platforms']:
                                platform_text = "\nPlatforms: " + ", ".join(declaration['platforms'])
-                               text += " " + platform_text
+                               text += f" {platform_text}"
                        text += "\n\n"
                    elif section['kind'] == 'content':
                        text += self.process_content_section(section, ignore_links)

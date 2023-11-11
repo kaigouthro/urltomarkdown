@@ -7,9 +7,9 @@
            base_address = ''
            if url:
                url = urlparse(url)
-               if url:
-                   base_address = url.scheme + "://" + url.netloc
-                   domain = url.netloc
+           if url:
+               base_address = f"{url.scheme}://{url.netloc}"
+               domain = url.netloc
 
            # make relative URLs absolute
            data = re.sub(r'\[([^\]]*)\]\(\/([^\/][^\)]*)\)', r'[\1](' + base_address + r'/\2)', data)

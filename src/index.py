@@ -13,12 +13,8 @@
        url = request.args.get('url')
        title = request.args.get('title')
        links = request.args.get('links')
-       inline_title = False
-       ignore_links = False
-       if title:
-           inline_title = (title == 'true')
-       if links:
-           ignore_links = (links == 'false')
+       inline_title = (title == 'true') if title else False
+       ignore_links = (links == 'false') if links else False
        if url and validURL(url):
            read_url(url, inline_title, ignore_links)
        else:
